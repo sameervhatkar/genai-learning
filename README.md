@@ -93,6 +93,40 @@ Mini Project:
 
 --------------------------------------------------
 
+DAY 2 SUMMARY (Jan 24)
+----------------------
+
+Topics covered:
+- File handling in Python
+  - Writing to files using "w" and "a" modes
+  - Reading file contents
+  - Understanding overwrite vs append behavior
+- Using context managers (`with open`)
+- OS interaction using the `os` module
+  - Creating directories programmatically
+  - Checking existence of files and folders
+
+Mini Project:
+- Daily Activity Logger v0
+  - Creates `ai_logs` directory if it does not exist
+  - Creates and appends logs to `activity.txt`
+  - Stores date along with daily learning summary
+  - Demonstrates persistent storage of information
+
+Key Learnings:
+- Files opened in "w" mode overwrite existing content
+- "a" mode is suitable for logs and historical data
+- Context managers automatically handle file closing
+- Python can interact directly with the operating system
+
+Revision Notes:
+- Revisit file modes without looking at documentation
+- Practice writing clean, readable log entries
+- Understand folder–file relationship clearly
+
+--------------------------------------------------
+
+
 WHY THIS REPO EXISTS
 --------------------
 
