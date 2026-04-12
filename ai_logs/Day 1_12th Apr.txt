@@ -1,0 +1,221 @@
+Python Learning Log – Day 1 (Full Stack GenAI Course)
+
+Instructors: Hitesh Choudhary, Piyush Garg
+Platform: Udemy
+Focus: Python Setup + Programming Basics + Virtual Environments (venv)
+
+⸻
+
+1. What is Programming?
+
+Programming is the process of giving instructions to a computer to perform specific tasks using a programming language.
+
+Key ideas:
+	•	Computers do not understand human language directly.
+	•	They understand structured instructions written in programming languages.
+	•	A program is a sequence of instructions executed step-by-step.
+	•	Programming helps automate tasks, build applications, and solve real-world problems.
+
+Examples:
+	•	Printing output on screen
+	•	Performing calculations
+	•	Reading files
+	•	Building web applications
+	•	Training AI models
+
+Python is widely used in:
+	•	Backend development
+	•	Automation
+	•	Data science
+	•	Machine learning
+	•	Generative AI
+
+⸻
+
+2. Installing Python
+
+Python must be installed before writing programs.
+
+Verification command:
+
+python --version
+
+or
+
+python3 --version
+
+This confirms Python is successfully installed.
+
+⸻
+
+3. Setting Up VS Code for Python Development
+
+Steps performed:
+	1.	Install VS Code
+	2.	Install Python Extension
+	3.	Select Python Interpreter
+	4.	Create Python file
+
+Example:
+
+hello.py
+
+Run program:
+
+python hello.py
+
+VS Code provides:
+	•	Syntax highlighting
+	•	Auto suggestions
+	•	Debugging support
+	•	Environment management
+
+⸻
+
+4. Using the print() Function
+
+The print() function displays output on the terminal.
+
+Example:
+
+print("Hello World")
+
+Output:
+
+Hello World
+
+Multiple prints example:
+
+print("Learning Python")
+print("Starting GenAI journey")
+
+Purpose of print():
+	•	Display messages
+	•	Debug programs
+	•	Show variable values
+	•	Verify logic execution
+
+⸻
+
+5. What is a Virtual Environment (venv)?
+
+A virtual environment is an isolated Python environment created for each project.
+
+It allows:
+	•	Separate dependencies per project
+	•	Different library versions
+	•	Cleaner project structure
+	•	Avoid conflicts between projects
+
+Example problem without venv:
+
+Project A needs:
+
+numpy version 1.x
+
+Project B needs:
+
+numpy version 2.x
+
+This causes conflicts globally.
+
+Solution:
+
+Use virtual environments.
+
+Each project maintains its own dependencies.
+
+⸻
+
+6. Creating a Virtual Environment
+
+Command used:
+
+python -m venv venv
+
+Explanation:
+	•	python → runs Python interpreter
+	•	-m → runs module as script
+	•	venv → module name
+	•	last venv → folder name for environment
+
+This creates a directory:
+
+venv/
+
+Inside it:
+	•	Python interpreter copy
+	•	package manager (pip)
+	•	environment configuration files
+
+⸻
+
+7. Activating Virtual Environment
+
+Command (Mac/Linux):
+
+source venv/bin/activate
+
+After activation:
+
+Terminal shows:
+
+(venv)
+
+Meaning:
+
+Virtual environment is active.
+
+Now any installed packages remain project-specific.
+
+Example:
+
+pip install requests
+
+Installed only inside this environment.
+
+⸻
+
+8. Deactivating Virtual Environment
+
+Command:
+
+deactivate
+
+Effect:
+	•	Leaves virtual environment
+	•	Returns to global Python interpreter
+
+⸻
+
+9. Why Virtual Environments Are Important for GenAI Projects
+
+Generative AI projects require many libraries like:
+	•	numpy
+	•	pandas
+	•	transformers
+	•	torch
+	•	langchain
+
+Different projects may require different versions.
+
+Virtual environments help:
+	•	keep projects independent
+	•	avoid dependency conflicts
+	•	maintain reproducibility
+
+⸻
+
+Summary of Day 1 Learning
+
+Today’s progress:
+	•	Understood what programming is
+	•	Installed Python successfully
+	•	Configured VS Code for Python
+	•	Learned how to use print()
+	•	Learned purpose of virtual environments
+	•	Created virtual environment using python -m venv venv
+	•	Activated environment using source venv/bin/activate
+	•	Deactivated environment using deactivate
+
+This forms the foundation for building Python-based Generative AI applications.
