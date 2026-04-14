@@ -1,4 +1,4 @@
-#Indexing and substring
+#Indexing and substring on Strings
 
 name = "Sameer Vhatkar"  
 # S  --> 0
@@ -27,3 +27,4 @@ name2 = "Sàmeer"
 print(name2) #over here it is working fine but if the language is not english but let say chinese, hindi etc then it will be mess, so we have to encode it
 encode_name2 = name2.encode("utf-8")
 print(f"Encoded string: {encode_name2}")
+#output will be Encoded string: b'S\xc3\xa0meer'
