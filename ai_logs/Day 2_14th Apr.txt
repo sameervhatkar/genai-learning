@@ -1,0 +1,383 @@
+Day 2 – Python Learning Log
+Date: 14 April
+
+Topics Covered:
+- Mutability vs Immutability
+- Object identity using id()
+- Arithmetic operators
+- Numeric readability using underscores
+- Boolean upcasting behavior
+- Floating-point precision
+- String indexing and slicing
+- UTF-8 encoding basics
+- Tuples and tuple unpacking
+- Membership operator
+
+
+1. Mutability vs Immutability
+
+Example:
+
+sugar_amount = 2
+print(f"The sugar amount is {sugar_amount}")
+
+sugar_amount = 12
+print(f"The sugar amount is {sugar_amount}")
+
+print(f"The id of value 2 is {id(2)}")
+print(f"The id of value 12 is {id(12)}")
+
+
+Explanation:
+
+Integers in Python are immutable objects.
+
+When we change:
+sugar_amount = 2
+
+to:
+sugar_amount = 12
+
+Python does NOT modify the original object.
+Instead:
+- a new object is created
+- the variable now points to a new memory location
+
+This proves integers are immutable.
+
+
+
+Mutable object example:
+
+spicemix = set()
+
+spicemix.add("Ginger")
+print(f"The id of spicemix is {id(spicemix)}")
+
+spicemix.add("Cardamom")
+print(f"The id of spicemix is {id(spicemix)}")
+
+
+Explanation:
+
+set() is a mutable object.
+
+Even after adding elements:
+"Ginger"
+"Cardamom"
+
+the memory location remains the same.
+
+This proves sets are mutable.
+
+
+
+2. Arithmetic Operators
+
+Example:
+
+a = 9
+b = 3
+print(a / b)
+
+Explanation:
+
+/ operator performs normal division
+It always returns a floating-point value
+
+Output:
+3.0
+
+
+
+Example:
+
+a = 10
+b = 3
+print(a // b)
+
+Explanation:
+
+// operator performs floor division
+It returns the integer quotient
+
+Output:
+3
+
+
+
+Example:
+
+a = 3
+b = 4
+
+print(a * b)
+print(a ** b)
+
+Explanation:
+
+* operator performs multiplication
+** operator performs exponentiation
+
+Example:
+3 ** 4 = 81
+
+
+
+3. Improving Numeric Readability
+
+Example:
+
+num = 1_000_000_000
+
+Explanation:
+
+Underscores improve readability of large numbers.
+
+Python internally treats this as:
+1000000000
+
+Useful for:
+- financial values
+- scientific calculations
+- large constants
+
+
+
+4. Boolean Upcasting in Python
+
+Example:
+
+flag = True
+num = 55
+
+print(flag + num)
+
+Explanation:
+
+Python treats:
+True = 1
+False = 0
+
+So internally:
+
+True + 55 becomes:
+1 + 55 = 56
+
+This behavior is called type upcasting.
+
+
+
+5. Floating Point Precision
+
+Example:
+
+a = 34.499999999
+b = 35
+
+print(b - a)
+
+Output:
+0.5000000009999965
+
+Explanation:
+
+Computers store floating-point numbers in binary format.
+
+Because of this:
+
+0.5 cannot always be stored exactly
+
+So results may appear slightly different.
+
+This behavior is normal.
+
+Understanding floating-point precision is important in scientific computing and AI-related calculations.
+
+
+
+6. String Indexing and Substring
+
+Example:
+
+name = "Sameer Vhatkar"
+
+Index positions:
+
+S  --> 0
+a  --> 1
+m  --> 2
+e  --> 3
+e  --> 4
+r  --> 5
+(space) --> 6
+V  --> 7
+h  --> 8
+a  --> 9
+t  --> 10
+k  --> 11
+a  --> 12
+r  --> 13
+
+
+Extracting first word:
+
+print(f"First word: {name[0:6]}")
+
+Explanation:
+
+[start:end]
+
+includes start index
+excludes end index
+
+Output:
+Sameer
+
+
+
+Extracting last word:
+
+print(f"Last word: {name[7:]}")
+
+Explanation:
+
+[start:]
+
+means from start index till end
+
+Output:
+Vhatkar
+
+
+
+Extracting alternate letters:
+
+print(f"Alternate letters: {name[0:13:2]}")
+
+Explanation:
+
+[start:end:step]
+
+step = 2
+selects every second character
+
+
+
+Reversing the string:
+
+print(f"Reversed String: {name[::-1]}")
+
+Explanation:
+
+step = -1
+
+This reverses the string.
+
+
+
+7. Encoding Strings (UTF-8)
+
+Example:
+
+name2 = "Sàmeer"
+print(name2)
+
+Python supports Unicode characters directly.
+
+Encoding example:
+
+encode_name2 = name2.encode("utf-8")
+print(f"Encoded string: {encode_name2}")
+
+Output:
+Encoded string: b'S\xc3\xa0meer'
+
+
+Explanation:
+
+UTF-8 encoding converts string data into byte format.
+
+This is useful when:
+
+- storing text in files
+- sending data over network
+- handling non-English characters
+
+Example languages affected:
+
+Hindi
+Chinese
+Japanese
+Arabic
+
+
+
+8. Tuples
+
+Example:
+
+scores = (56, 70, 35, 48, 43)
+print(scores)
+
+Tuple properties:
+
+- ordered
+- immutable
+- allows duplicate values
+- faster than lists in many cases
+
+
+
+Tuple unpacking example:
+
+(score1, score2, score3, score4, score5) = scores
+
+print(f"The scores are {score1}, {score2}, {score3}, {score4}, {score5}")
+print(f"The scores are {score1, score2, score3, score4, score5}")
+
+Explanation:
+
+Tuple unpacking assigns each tuple value to a separate variable.
+
+
+
+9. Membership Operator
+
+Example:
+
+print(f"Did someone score 70 ? {70 in scores}")
+
+Output:
+True
+
+
+Explanation:
+
+'in' operator checks whether a value exists inside a collection.
+
+Works with:
+
+strings
+lists
+tuples
+sets
+dictionaries
+
+
+
+Summary of Day 2 Learning
+
+Today I learned:
+
+- Mutable vs immutable objects
+- Object identity using id()
+- Arithmetic operators (/ // *)
+- Exponentiation operator (**)
+- Numeric readability using underscores
+- Boolean upcasting behavior
+- Floating-point precision issues
+- String slicing and reversing
+- UTF-8 encoding basics
+- Tuple creation and unpacking
+- Membership operator usage
