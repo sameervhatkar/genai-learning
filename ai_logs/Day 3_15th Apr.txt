@@ -1,0 +1,459 @@
+Day 3 – Python Learning Log
+Date: 15 April
+
+Topics Covered:
+- List datatype and operations
+- Operator overloading with lists
+- Set datatype and operations
+- Frozen sets concept
+- Dictionary datatype
+- Membership operations
+- Conditional statements (if-else)
+- Nested if statements
+- Logical operators (and / or)
+- Ternary operator
+- Match-case statement
+
+
+--------------------------------------------------
+
+Learning: List Datatype
+
+Example:
+
+nums = [43, 56, 78, 19, 20, 15]
+print(nums)
+
+nums.append(34)
+print(nums)
+
+nums.remove(56)
+print(nums)
+
+nums.insert(6, 21)
+print(nums)
+
+nums.pop()
+print(nums)
+
+nums.reverse()
+print(nums)
+
+nums.sort()
+print(nums)
+
+maxi = max(nums)
+print(maxi)
+
+mini = min(nums)
+print(mini)
+
+ele = ['a', 'b', 'c', 'd']
+nums.extend(ele)
+print(nums)
+
+
+Concept:
+
+Lists are ordered and mutable collections in Python.
+
+Important properties of lists:
+
+- ordered
+- mutable
+- allow duplicate values
+- can store multiple data types together
+
+Common operations learned:
+
+append() → adds element at the end
+
+remove() → removes specific element
+
+insert(index, value) → inserts element at given position
+
+pop() → removes last element
+
+reverse() → reverses list order
+
+sort() → sorts elements in ascending order
+
+max() → returns largest element
+
+min() → returns smallest element
+
+extend() → adds elements of another list
+
+
+
+--------------------------------------------------
+
+Learning: Operator Overloading with Lists
+
+Example:
+
+nums = [43, 56, 78, 19, 20, 15]
+numsEle = nums + ele
+print(numsEle)
+
+
+Concept:
+
+"+" operator combines two lists.
+
+Instead of performing numeric addition, it merges both lists.
+
+This behavior is called operator overloading.
+
+Example result:
+
+[43, 56, 78, 19, 20, 15, 'a', 'b', 'c', 'd']
+
+
+
+Example:
+
+strong_brew = ["black_tea", "water"] * 3
+print(f"Strong brew {strong_brew}")
+
+
+Concept:
+
+"*" operator repeats list elements multiple times.
+
+Example output:
+
+['black_tea', 'water', 'black_tea', 'water', 'black_tea', 'water']
+
+
+
+--------------------------------------------------
+
+Learning: Set Datatype
+
+Example:
+
+essential_spices = {"cardomom", "ginger", "cinnamon"}
+optional_spices = {"cloves", "ginger", "black_pepper"}
+
+all_spices = essential_spices | optional_spices
+print(f"Union of all spices: {all_spices}")
+
+common_spices = essential_spices & optional_spices
+print(f"Intersection of all spices: {common_spices}")
+
+
+Concept:
+
+Sets are unordered collections of unique elements.
+
+Important properties:
+
+- unordered
+- mutable
+- do not allow duplicate values
+
+Operations learned:
+
+Union (|) → combines both sets
+
+Intersection (&) → finds common elements
+
+
+
+Other supported operations:
+
+difference (-)
+
+membership checking using "in"
+
+
+
+Frozen Set Concept:
+
+Frozen set is an immutable version of a set.
+
+Once created:
+
+elements cannot be changed.
+
+
+
+--------------------------------------------------
+
+Learning: Dictionary Datatype
+
+Example:
+
+chai_order = dict(type = "Masala Chai", size = "Large", sugar = 2)
+print(f"Chai Order: {chai_order}")
+
+
+Concept:
+
+Dictionary stores data in key-value pairs.
+
+Similar to HashMap in Java.
+
+Example format:
+
+key : value
+
+
+Example:
+
+chai_recipe = {}
+
+chai_recipe["base"] = "black_tea"
+chai_recipe["liquid"] = "milk"
+
+print(f"Recipe Base: {chai_recipe['base']}")
+print(f"Chai Recipe: {chai_recipe}")
+
+
+Concept:
+
+Values are accessed using keys.
+
+
+
+Deleting dictionary elements:
+
+del chai_recipe["liquid"]
+
+Removes selected key-value pair.
+
+
+
+Membership operation:
+
+print(f"Is sugar present in the order? {'sugar' in chai_order}")
+
+
+Concept:
+
+"in" checks whether a key exists in dictionary.
+
+
+
+Dictionary helper functions:
+
+chai_order.keys()
+
+Returns all keys
+
+
+chai_order.values()
+
+Returns all values
+
+
+chai_order.items()
+
+Returns key-value pairs together
+
+
+
+Removing last dictionary record:
+
+last_item = chai_order.popitem()
+
+
+Concept:
+
+popitem() removes last inserted key-value pair.
+
+
+
+Safe value access using get():
+
+customer_note = chai_order.get("note", "No Note")
+
+
+Concept:
+
+get() prevents errors if key does not exist.
+
+Returns default value instead.
+
+
+
+--------------------------------------------------
+
+Learning: Conditional Statements (if-else)
+
+Example:
+
+age = int(input("Enter your age: "))
+
+if age >= 18:
+    print("You are eligible to vote.")
+else:
+    print("You are not eligible to vote yet.")
+
+
+Concept:
+
+if-else is used for decision making.
+
+If condition is true → executes first block
+
+Otherwise → executes else block
+
+
+
+--------------------------------------------------
+
+Learning: Logical Operator (or)
+
+Example:
+
+order = input("Enter the order: ").lower()
+
+if order == "samosa" or order == "cookies":
+    print("Great choice")
+else:
+    print("Sorry we only serve Cookies or Samosa")
+
+
+Concept:
+
+"or" operator checks multiple conditions.
+
+If any condition is true → result becomes true.
+
+
+
+--------------------------------------------------
+
+Learning: Multiple Conditions using elif
+
+Example:
+
+cup_size = input("Enter the size of the cup: ").lower()
+
+if cup_size == "small":
+    print("The price is ₹10")
+
+elif cup_size == "medium":
+    print("The price is ₹15")
+
+elif cup_size == "large":
+    print("The price is ₹20")
+
+else:
+    print("Unknown cup size")
+
+
+Concept:
+
+elif allows checking multiple conditions sequentially.
+
+
+
+--------------------------------------------------
+
+Learning: Nested if Statement
+
+Example:
+
+device_status = "active"
+
+if device_status == "active":
+
+    temperature = int(input("Enter the temperature: "))
+
+    if temperature > 35:
+        print("High temperature alert!")
+
+    else:
+        print("Normal Temperature")
+
+else:
+    print("Device is offline")
+
+
+Concept:
+
+Nested if means using if statement inside another if statement.
+
+Used when second condition depends on first condition.
+
+
+
+--------------------------------------------------
+
+Learning: Ternary Operator
+
+Example:
+
+order_amount = int(input("Enter the order amount: "))
+
+delivery_fees = 0 if order_amount > 300 else 30
+
+print(f"The delivery amount is {delivery_fees}")
+
+
+Concept:
+
+Ternary operator writes if-else in single line.
+
+Syntax:
+
+value_if_true if condition else value_if_false
+
+
+
+--------------------------------------------------
+
+Learning: Match Case Statement
+
+Example:
+
+ticket_type = input("Enter ticket type (Sleeper / AC / General / Luxury): ").lower()
+
+match ticket_type:
+
+    case "sleeper":
+        print("Sleeper – No AC, beds available")
+
+    case "ac":
+        print("AC – Air conditioned, comfy ride")
+
+    case "general":
+        print("General – Cheapest option, no reservation")
+
+    case "luxury":
+        print("Luxury – Premium seats with meals")
+
+    case _:
+        print("Invalid ticket type entered")
+
+
+Concept:
+
+match-case works like switch-case in other programming languages.
+
+case _ acts as default case.
+
+Available in Python version 3.10 and above.
+
+
+
+--------------------------------------------------
+
+Summary of Day 3 Learning
+
+Today I learned:
+
+- List datatype and operations
+- Operator overloading with lists
+- Set datatype operations
+- Frozen set concept
+- Dictionary datatype and helper functions
+- Membership operator usage
+- Conditional statements
+- Logical operators (or)
+- Nested if statements
+- Ternary operator
+- Match-case statement
