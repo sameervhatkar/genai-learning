@@ -1,0 +1,418 @@
+Day 4 – Python Learning Log
+Date: 16 April
+
+Topics Covered:
+
+- for loop with range()
+- Iterating over sets
+- enumerate() function
+- zip() function
+- while loop
+- break and continue statements
+- for-else loop
+- Walrus operator (:=)
+- Working with list of dictionaries
+- Functions in Python
+- Function calling sequence
+- Function return values
+
+
+--------------------------------------------------
+
+Learning: for loop with range()
+
+Example:
+
+for token in range(1, 11):
+    print(f"Serving chai to token number: {token}")
+
+
+Concept:
+
+range(start, end)
+
+Generates numbers from start value up to end-1.
+
+Example:
+
+range(1, 11)
+
+Generates:
+
+1 to 10
+
+Used when number of iterations is already known.
+
+
+
+--------------------------------------------------
+
+Learning: Iterating over a Set
+
+Example:
+
+orders = {"abc", "def", "ghi", "jkl"}
+
+for name in orders:
+    print(f"Order ready for {name}")
+
+
+Concept:
+
+Set is an unordered collection.
+
+Important behavior:
+
+Output order may change every time the program runs.
+
+Used when:
+
+duplicate values are not allowed
+order is not important
+
+
+
+--------------------------------------------------
+
+Learning: enumerate()
+
+Example:
+
+menu = ["Ginger", "Cardamom", "Mint", "Masala"]
+
+for idx, chai in enumerate(menu, start=1):
+    print(f"{idx}. {chai} chai")
+
+
+Concept:
+
+enumerate() provides both:
+
+index number
+element value
+
+Useful when numbering items in lists.
+
+Example:
+
+start=1
+
+Means indexing begins from 1 instead of default 0.
+
+
+
+--------------------------------------------------
+
+Learning: zip() function
+
+Example:
+
+names = {"abc", "def", "ghi", "jkl"}
+amounts = {40, 50, 120, 70}
+
+for name, amount in zip(names, amounts):
+    print(f"{name} paid ₹{amount}")
+
+
+Concept:
+
+zip() combines elements from multiple collections together.
+
+Pairs elements position-wise.
+
+Important note:
+
+Since sets are unordered collections,
+
+pairing may change each time program runs.
+
+zip() is mostly used with lists or tuples.
+
+
+
+--------------------------------------------------
+
+Learning: while loop
+
+Example:
+
+temp = 40
+
+while temp < 100:
+    print(f"Current temperature is {temp}")
+    temp += 15
+
+print("Tea is ready to boil")
+
+
+Concept:
+
+while loop executes until condition becomes False.
+
+Used when number of iterations is not fixed.
+
+Loop continues as long as condition remains True.
+
+
+
+--------------------------------------------------
+
+Learning: break and continue statements
+
+Example:
+
+for num in range(1, 11):
+
+    if num == 5:
+        continue
+
+    if num == 8:
+        break
+
+    print(num)
+
+
+Concept:
+
+continue
+
+Skips current iteration and moves to next iteration.
+
+Example:
+
+Number 5 skipped.
+
+
+break
+
+Stops loop execution immediately.
+
+Example:
+
+Loop stops when number becomes 8.
+
+
+
+--------------------------------------------------
+
+Learning: for-else loop
+
+Example:
+
+numbers = {2, 4, 6, 8, 10}
+
+search = int(input("Enter a number to be searched: "))
+
+for number in numbers:
+
+    if number == search:
+        print("Number found")
+        break
+
+else:
+    print("Number not found.")
+
+
+Concept:
+
+else block executes only if loop completes normally.
+
+If break executes,
+
+else block does NOT execute.
+
+
+
+--------------------------------------------------
+
+Learning: Walrus Operator (:=)
+
+Example:
+
+while (user_input := input("Enter a number (type exit to stop): ")) != "exit":
+    print("You entered:", user_input)
+
+
+Concept:
+
+Walrus operator assigns value and checks condition in same line.
+
+Syntax:
+
+variable := expression
+
+Reduces repeated code.
+
+
+
+Another example:
+
+numbers = [10, 20, 30, 40]
+
+if (length := len(numbers)) > 3:
+    print("List has", length, "elements")
+
+
+Concept:
+
+Stores length and checks condition in single statement.
+
+
+
+--------------------------------------------------
+
+Learning: Working with List of Dictionaries
+
+Example:
+
+users = [
+    {"id": 1, "total": 100, "coupon": "P20"},
+    {"id": 2, "total": 150, "coupon": "F10"},
+    {"id": 3, "total": 80, "coupon": "P50"}
+]
+
+
+discounts = {
+    "P20": (0.2, 0),
+    "F10": (0.0, 10),
+    "P50": (0.5, 0)
+}
+
+
+for user in users:
+
+    percent, fixed = discounts.get(user["coupon"], (0, 0))
+
+    discount_amount = user["total"] * percent + fixed
+
+    print(f"{user['id']} paid {user['total']} and got a discount of {discount_amount}")
+
+
+Concept:
+
+List of dictionaries is used to store structured records.
+
+discounts.get()
+
+Safely retrieves dictionary values.
+
+Returns default value if key does not exist.
+
+Tuple unpacking:
+
+percent, fixed = (0.2, 0)
+
+assigns multiple values at once.
+
+
+
+--------------------------------------------------
+
+Learning: Functions in Python
+
+Example:
+
+def add(a, b):
+    print(f"The sum of {a} and {b} is {a+b}")
+
+add(5,6)
+add(10,67)
+add(55,66)
+
+
+Concept:
+
+Functions allow code reuse.
+
+Avoid repetition.
+
+Improve readability and structure.
+
+
+
+--------------------------------------------------
+
+Learning: Function Calling Sequence
+
+Example:
+
+def fetch_sales():
+    print("Fetching the sales data.")
+
+def filter_valid_sales():
+    print("Filtering valid sales data.")
+
+def summarize_data():
+    print("Summarizing sales data")
+
+def generate_report():
+
+    fetch_sales()
+
+    filter_valid_sales()
+
+    summarize_data()
+
+    print("The report is generated")
+
+
+generate_report()
+
+
+Concept:
+
+Functions can call other functions.
+
+Helps organize large programs into smaller steps.
+
+Improves modular programming structure.
+
+
+
+--------------------------------------------------
+
+Learning: Functions with return value
+
+Example:
+
+def calculate_bill(number_of_cups):
+
+    return number_of_cups * 15
+
+
+number_of_cups = int(input("How many cups you had? "))
+
+total = calculate_bill(number_of_cups)
+
+print(f"The bill is ₹{total} in which you had {number_of_cups} number of cups each costing ₹15.")
+
+
+Concept:
+
+return sends value back from function to caller.
+
+Allows function output to be reused later.
+
+More flexible than print() inside function.
+
+
+
+--------------------------------------------------
+
+Summary of Day 4 Learning
+
+Today I learned:
+
+- for loop using range()
+- Iterating over sets
+- enumerate() function
+- zip() function
+- while loop usage
+- break and continue statements
+- for-else loop behavior
+- Walrus operator usage
+- List of dictionaries concept
+- Dictionary safe lookup using get()
+- Functions and modular programming
+- Function calling structure
+- Functions with return values
