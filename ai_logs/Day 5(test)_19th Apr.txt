@@ -1,0 +1,173 @@
+--------------------------------------------------
+
+Sunday Revision Test – Practice Assignments
+Date: 16 April
+
+
+--------------------------------------------------
+
+Assignment 1: Print numbers greater than 40 using for loop and if condition
+
+nums = [12, 45, 67, 23, 90, 34, 50]
+
+for num in nums:
+    if num > 40:
+        print(num)
+
+
+Concept:
+
+Used for loop to iterate through list elements.
+
+Applied if condition to filter only numbers greater than 40.
+
+
+
+--------------------------------------------------
+
+Assignment 2: Print numbers NOT divisible by 5 using continue statement
+
+nums = [10, 23, 40, 51, 70, 86]
+
+for num in nums:
+    if num % 5 == 0:
+        continue
+    print(num)
+
+
+Concept:
+
+continue skips current iteration.
+
+Only numbers NOT divisible by 5 are printed.
+
+
+
+--------------------------------------------------
+
+Assignment 3: Print menu items with numbering using enumerate()
+
+menu = ["Tea", "Coffee", "Milk", "Juice"]
+
+for idx, item in enumerate(menu, start=1):
+    print(f"{idx} {item}")
+
+
+Concept:
+
+enumerate() provides index and element together.
+
+start=1 begins numbering from 1 instead of default 0.
+
+
+
+--------------------------------------------------
+
+Assignment 4: Combine two lists using zip()
+
+names = ["Aman", "Riya", "Kabir"]
+marks = [85, 90, 78]
+
+for name, mark in zip(names, marks):
+    print(f"{name} scored {mark}")
+
+
+Concept:
+
+zip() combines multiple lists element-wise.
+
+Useful when iterating multiple collections together.
+
+
+
+--------------------------------------------------
+
+Assignment 5: Accept numbers from user, skip negative numbers and stop when user enters 0
+
+while True:
+
+    n = int(input("Enter number: "))
+
+    if n < 0:
+        continue
+
+    if n == 0:
+        break
+
+    print(f"Accepted number: {n}")
+
+
+Concept:
+
+continue skips negative numbers.
+
+break stops loop when 0 is entered.
+
+Example of sentinel-controlled loop.
+
+
+
+--------------------------------------------------
+
+Assignment 6: Check whether list contains an even number using for-else loop
+
+numbers = [3, 7, 11, 18, 25]
+
+for num in numbers:
+
+    if num % 2 == 0:
+        print("Even number found")
+        break
+
+else:
+    print("No even number found")
+
+
+Concept:
+
+else block executes only when loop finishes normally.
+
+If break executes, else block does not run.
+
+
+
+--------------------------------------------------
+
+Assignment 7: Print names of students who passed using dictionary iteration
+
+students = {
+    "Aman": 85,
+    "Riya": 92,
+    "Kabir": 67,
+    "Neha": 48
+}
+
+print("Passed students:")
+
+for name, mark in students.items():
+
+    if mark >= 50:
+        print(name)
+
+
+Concept:
+
+students.items() returns key-value pairs.
+
+Used dictionary iteration with condition filtering.
+
+
+
+--------------------------------------------------
+
+Summary of Sunday Revision Practice
+
+Today I practiced:
+
+- Filtering list elements using for loop
+- Using continue statement
+- Using enumerate()
+- Using zip() to combine lists
+- Sentinel-controlled loops using break
+- for-else loop behavior
+- Dictionary iteration with condition filtering
