@@ -1,0 +1,227 @@
+Day 5 – Python Learning Log
+Date: 3 May
+
+Topics Covered:
+
+- List Comprehension
+- Set Comprehension
+- Dictionary Comprehension
+- Generator Comprehension
+
+
+--------------------------------------------------
+
+Learning: List Comprehension
+
+Example:
+
+nums = [1,2,3,4,5,6,7,8,9,0]
+
+even_nums = [num for num in nums if num % 2 == 0]
+
+print(even_nums)
+
+
+Concept:
+
+List comprehension is used to create lists in a single line.
+
+It combines:
+
+loop
+condition
+expression
+
+Syntax:
+
+[expression for item in iterable if condition]
+
+Used for:
+
+filtering data
+transforming values
+writing cleaner and shorter code
+
+
+
+--------------------------------------------------
+
+Learning: Set Comprehension
+
+Example:
+
+nums = [1, 2, 3, 4, 3, 5, 6, 1, 4]
+
+unique_num = {num for num in nums}
+
+print(unique_num)
+
+
+Concept:
+
+Set comprehension is used to create sets in a single line.
+
+It automatically removes duplicate values.
+
+Syntax:
+
+{expression for item in iterable if condition}
+
+Useful for:
+
+removing duplicates
+filtering unique values
+working with unordered collections
+
+
+
+--------------------------------------------------
+
+Learning: Extract unique values from dictionary of sets
+
+Example:
+
+data = {
+    "A": {1, 2, 3},
+    "B": {3, 4, 5},
+    "C": {5, 6, 7}
+}
+
+unique_values = {value for values in data.values() for value in values}
+
+print(unique_values)
+
+
+Concept:
+
+Nested loops can be used inside comprehension.
+
+This helps in flattening structures.
+
+Useful for:
+
+combining multiple collections
+extracting unique values
+data processing tasks
+
+
+
+--------------------------------------------------
+
+Learning: Dictionary Comprehension
+
+Example:
+
+tea_prices_inr = {
+    "Masala Chai": 40,
+    "Green Chai": 50,
+    "Lemon Chai": 60
+}
+
+tea_prices_usd = {tea: price / 80 for tea, price in tea_prices_inr.items()}
+
+print(tea_prices_usd)
+
+
+Concept:
+
+Dictionary comprehension is used to create dictionaries in a single line.
+
+Syntax:
+
+{key: value for item in iterable}
+
+Used for:
+
+transforming values
+filtering key-value pairs
+creating dictionaries dynamically
+
+
+
+--------------------------------------------------
+
+Learning: Generator Comprehension
+
+Example:
+
+nums = [1, 2, 3, 4]
+
+squares_gen = (num * num for num in nums)
+
+print(squares_gen)
+
+
+Concept:
+
+Generator comprehension creates a generator object.
+
+Values are generated one by one instead of storing all values.
+
+This is called lazy evaluation.
+
+Syntax:
+
+(expression for item in iterable if condition)
+
+Uses:
+
+memory optimization
+working with large data
+stream processing
+
+
+
+--------------------------------------------------
+
+Example: Using next() with generator
+
+gen = (i * i for i in range(5))
+
+print(next(gen))
+print(next(gen))
+print(next(gen))
+
+
+Concept:
+
+next() retrieves values one at a time from generator.
+
+Generator does not store all values in memory.
+
+
+
+--------------------------------------------------
+
+Example: Generator inside sum()
+
+nums = [1, 2, 3, 4]
+
+result = sum(num * num for num in nums)
+
+print(result)
+
+
+Concept:
+
+Generator can be used directly inside functions.
+
+No need to create separate list.
+
+Efficient and clean approach.
+
+
+
+--------------------------------------------------
+
+Summary of Day 5 Learning
+
+Today I learned:
+
+- List comprehension for filtering and transformation
+- Set comprehension for unique data handling
+- Nested comprehension for flattening structures
+- Dictionary comprehension for key-value transformations
+- Generator comprehension and lazy evaluation
+- Using next() with generators
+- Using generators inside functions like sum()

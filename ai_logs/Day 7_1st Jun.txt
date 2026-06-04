@@ -1,0 +1,294 @@
+Day 6 – Python Learning Log
+Date: 4 May
+
+Topics Covered:
+
+- Classes and Objects
+- Class Attributes
+- Instance Attributes
+- Adding and Deleting Attributes
+- Methods
+- self Keyword
+- Constructors (__init__)
+- Creating Multiple Objects
+
+
+--------------------------------------------------
+
+Learning: Creating Classes and Objects
+
+Example:
+
+class Chai:
+    pass
+
+class ChaiTime:
+    pass
+
+print(type(Chai))
+
+ginger_tea = Chai()
+
+print(type(ginger_tea))
+print(type(ginger_tea) is Chai)
+print(type(ginger_tea) is ChaiTime)
+
+
+Concept:
+
+A class acts as a blueprint for creating objects.
+
+Objects are instances of a class.
+
+type() can be used to determine the type of an object.
+
+A class itself is also an object in Python.
+
+
+
+--------------------------------------------------
+
+Learning: Class Attributes
+
+Example:
+
+class Chai:
+    origin = "India"
+
+print(Chai.origin)
+
+Chai.is_hot = True
+print(Chai.is_hot)
+
+masala = Chai()
+
+print(f"Masala {masala.origin}")
+print(f"Masala {masala.is_hot}")
+
+
+Concept:
+
+Variables defined directly inside a class are called class attributes.
+
+They are shared among all objects created from that class.
+
+Class attributes can be accessed using either:
+
+ClassName.attribute
+
+or
+
+object.attribute
+
+
+
+--------------------------------------------------
+
+Learning: Instance Attributes
+
+Example:
+
+masala.is_hot = False
+
+print(f"Masala {masala.is_hot}")
+print(f"Chai Class {Chai.is_hot}")
+
+masala.flavor = "Masala"
+
+print(f"Flavor: {masala.flavor}")
+
+
+Concept:
+
+Attributes created using an object belong only to that object.
+
+These are called instance attributes.
+
+Instance attributes override class attributes for that specific object.
+
+Changing an instance attribute does not affect the class attribute.
+
+
+
+--------------------------------------------------
+
+Learning: Adding and Deleting Attributes
+
+Example:
+
+class Chai:
+    temperature = "hot"
+    strength = "Strong"
+
+cutting = Chai()
+
+print(cutting.temperature)
+
+cutting.temperature = "Mild"
+
+print(cutting.temperature)
+print(Chai.temperature)
+
+del cutting.temperature
+
+print(cutting.temperature)
+
+cutting.cup = "small"
+
+print(cutting.cup)
+
+del cutting.cup
+
+
+Concept:
+
+Python allows attributes to be added dynamically.
+
+Attributes can also be deleted using del.
+
+If an instance attribute is deleted, Python searches for the same attribute in the class.
+
+If the attribute does not exist anywhere, an AttributeError is raised.
+
+
+
+--------------------------------------------------
+
+Learning: Methods
+
+Example:
+
+class Chaicup:
+
+    size = 150
+
+    def describe(self):
+        return f"A {self.size}ml chai cup"
+
+cup = Chaicup()
+
+print(cup.describe())
+
+
+Concept:
+
+Functions defined inside a class are called methods.
+
+Methods describe the behavior of objects.
+
+Objects call methods using dot notation.
+
+Example:
+
+object.method()
+
+
+
+--------------------------------------------------
+
+Learning: self Keyword
+
+Example:
+
+class Chaicup:
+
+    size = 150
+
+    def describe(self):
+        return f"A {self.size}ml chai cup"
+
+cup = Chaicup()
+
+print(cup.describe())
+
+print(Chaicup.describe(cup))
+
+
+Concept:
+
+self refers to the current object that is calling the method.
+
+When we write:
+
+cup.describe()
+
+Python internally converts it to:
+
+Chaicup.describe(cup)
+
+Therefore, self receives the reference of the current object automatically.
+
+
+
+--------------------------------------------------
+
+Learning: Constructors (__init__)
+
+Example:
+
+class ChaiOrder:
+
+    def __init__(self, flavor, size):
+        self.flavor = flavor
+        self.size = size
+
+    def summary(self):
+        return f"{self.size}ml of {self.flavor} chai"
+
+order = ChaiOrder("Masala", 200)
+
+print(order.summary())
+
+
+Concept:
+
+__init__() is called automatically whenever an object is created.
+
+It is known as the constructor.
+
+Constructors are used to initialize object attributes.
+
+This helps create objects with different values.
+
+
+
+--------------------------------------------------
+
+Learning: Creating Multiple Objects
+
+Example:
+
+order = ChaiOrder("Masala", 200)
+
+print(order.summary())
+
+order_two = ChaiOrder("Ginger", 220)
+
+print(order_two.summary())
+
+
+Concept:
+
+Multiple objects can be created from the same class.
+
+Each object maintains its own state and data.
+
+Even though both objects belong to the same class, they can store different values.
+
+
+
+--------------------------------------------------
+
+Summary of Day 6 Learning
+
+Today I learned:
+
+- What classes and objects are
+- How to create objects from classes
+- Class attributes and instance attributes
+- Dynamic attribute creation and deletion
+- Methods inside classes
+- How the self keyword works
+- Constructors using __init__()
+- Creating multiple objects from the same class
+- Object initialization and state management
