@@ -1,5 +1,5 @@
 Day 6 – Python Learning Log
-Date: 4 May
+Date: 1st Jun
 
 Topics Covered:
 

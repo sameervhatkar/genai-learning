@@ -1,0 +1,204 @@
+Day 7 – Python Learning Log
+Date: 6 June
+
+Topics Covered:
+
+- Inheritance
+- Composition
+- IS-A Relationship
+- HAS-A Relationship
+- Reusing Code Through Inheritance
+- Using Objects Inside Other Classes
+
+
+--------------------------------------------------
+
+Learning: Inheritance
+
+Example:
+
+# MasalaChai IS-A Chai
+
+class Chai:
+
+    def prepare(self):
+        print("Preparing regular chai")
+
+
+class MasalaChai(Chai):
+
+    def add_spices(self):
+        print("Adding ginger, cardamom and cloves")
+
+
+tea = MasalaChai()
+
+tea.prepare()
+
+tea.add_spices()
+
+
+Concept:
+
+Inheritance allows a class to acquire the properties and methods of another class.
+
+The existing class is called the Parent Class or Base Class.
+
+The new class is called the Child Class or Derived Class.
+
+The child class can use all accessible methods and attributes of the parent class and can also add its own functionality.
+
+Relationship:
+
+MasalaChai IS-A Chai
+
+Key Syntax:
+
+class ChildClass(ParentClass):
+
+Benefits:
+
+- Code Reusability
+- Better Organization
+- Easier Maintenance
+- Supports Hierarchical Design
+
+
+
+--------------------------------------------------
+
+Learning: Composition
+
+Example:
+
+# ChaiShop HAS-A Chai
+
+class Chai:
+
+    def prepare(self):
+        print("Preparing chai")
+
+
+class ChaiShop:
+
+    def __init__(self):
+
+        self.chai = Chai()
+
+    def serve(self):
+
+        self.chai.prepare()
+
+        print("Serving chai")
+
+
+shop = ChaiShop()
+
+shop.serve()
+
+
+Concept:
+
+Composition is achieved by creating an object of one class inside another class.
+
+Instead of inheriting functionality, a class uses another class by containing its object.
+
+Relationship:
+
+ChaiShop HAS-A Chai
+
+When serve() is called, the ChaiShop object internally uses the Chai object to perform its work.
+
+Key Identification:
+
+Whenever you see:
+
+self.object_name = SomeClass()
+
+inside a class, it usually indicates Composition.
+
+Benefits:
+
+- Loose Coupling
+- Better Flexibility
+- Easier Testing
+- Better Code Reusability
+
+
+
+--------------------------------------------------
+
+Difference Between Inheritance and Composition
+
+Inheritance:
+
+class MasalaChai(Chai)
+
+Relationship:
+
+MasalaChai IS-A Chai
+
+Used when one class is a specialized version of another class.
+
+
+Composition:
+
+self.chai = Chai()
+
+Relationship:
+
+ChaiShop HAS-A Chai
+
+Used when one class needs to use the functionality of another class.
+
+
+
+--------------------------------------------------
+
+Revision Notes
+
+Inheritance:
+
+Dog IS-A Animal
+
+Car IS-A Vehicle
+
+MasalaChai IS-A Chai
+
+
+Composition:
+
+Car HAS-A Engine
+
+Computer HAS-A Keyboard
+
+ChaiShop HAS-A Chai
+
+
+Quick Identification Rule:
+
+class Child(Parent)
+        ↑
+Inheritance
+
+
+self.obj = SomeClass()
+        ↑
+Composition
+
+
+
+--------------------------------------------------
+
+Summary of Day 7 Learning
+
+Today I learned:
+
+- Inheritance in Python
+- Parent and Child Classes
+- IS-A Relationship
+- Composition in Python
+- HAS-A Relationship
+- Creating objects inside another class
+- Difference between Inheritance and Composition
+- When to use Inheritance vs Composition
