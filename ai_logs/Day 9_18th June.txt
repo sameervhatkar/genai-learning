@@ -1,0 +1,326 @@
+Day 9 Notes – Understanding Large Language Models (LLMs)
+
+Date: 18 June
+
+⸻
+
+1. Introduction to Large Language Models (LLMs)
+
+We use AI chatbots such as ChatGPT, Gemini, and Claude to ask questions in natural language.
+
+These systems feel like we are chatting with another person because they are designed to understand and generate human language.
+
+What is an LLM?
+
+LLM (Large Language Model) is an artificial intelligence system trained to understand and generate human language.
+
+Examples:
+
+* ChatGPT
+* Gemini
+* Claude
+* Llama
+
+LLMs are trained on massive amounts of text data collected from various sources such as:
+
+* Websites and blogs
+* Books
+* Documentation
+* Reference materials
+* Public forums and discussions
+* Programming code repositories
+* Educational content
+* Research papers
+* Publicly available social media content
+
+The model learns patterns, relationships, grammar, facts, and reasoning abilities from this data.
+
+Important: LLMs do not memorize exact answers. They learn patterns in language and predict the most probable next token.
+
+⸻
+
+2. GPT Full Form
+
+GPT stands for:
+
+G – Generative
+
+* Generates new text as output.
+
+P – Pre-trained
+
+* Trained on large datasets before being used by users.
+
+T – Transformer
+
+* Uses the Transformer architecture introduced in the 2017 paper Attention Is All You Need.
+
+⸻
+
+3. Transformer Architecture
+
+The Transformer is the core architecture behind modern LLMs.
+
+Input:
+
+User Input → Tokens → Transformer → Output Tokens
+
+Example:
+
+Input: "Hi"
+Output: "Hey there, how are you?"
+
+The Transformer processes input tokens and predicts output tokens one by one.
+
+⸻
+
+4. History of Transformers
+
+Google Translate Era
+
+Before Transformers, machine translation systems used statistical models and recurrent neural networks (RNNs/LSTMs).
+
+Google Translate was launched in 2006.
+
+In 2017, Google researchers published the paper:
+
+“Attention Is All You Need”
+
+Purpose:
+
+* Improve machine translation
+* Replace RNNs and LSTMs
+* Introduce the Transformer architecture
+
+This paper became the foundation of modern LLMs.
+
+⸻
+
+5. How GPT Generates Text
+
+GPT works using next-token prediction.
+
+Example:
+
+Input: "Hey there!"
+Prediction → "I"
+Input: "Hey there! I"
+Prediction → "am"
+Input: "Hey there! I am"
+Prediction → "good"
+Input: "Hey there! I am good"
+Prediction → "<END>"
+
+The model repeatedly predicts the next most probable token until it reaches an end token.
+
+⸻
+
+6. What is a Token?
+
+A token is the basic unit processed by an LLM.
+
+A token can be:
+
+* A word
+* Part of a word
+* A character
+* Punctuation
+* Special symbols
+
+Example:
+
+"ChatGPT is awesome!"
+
+Possible tokens:
+
+["Chat", "GPT", " is", " awesome", "!"]
+
+Tokenization rules vary from model to model.
+
+Different models have different tokenizers:
+
+* GPT-4o
+* GPT-3.5
+* Gemini
+* Claude
+
+⸻
+
+7. Tokenization
+
+Tokenization is the process of converting human-readable text into tokens and then mapping those tokens to numbers.
+
+Example:
+
+Assume:
+
+A → 1
+B → 2
+C → 3
+D → 4
+E → 5
+
+Input:
+
+BDE
+
+Converted representation:
+
+245
+
+Process:
+
+Text → Tokens → Token IDs → Transformer
+
+Definition:
+
+Tokenization is the process of converting user input into numerical representations understandable by an LLM.
+
+⸻
+
+8. Tiktokenizer
+
+Tools such as Tiktokenizer help visualize:
+
+* Token boundaries
+* Token IDs
+* Total token count
+
+Why it matters:
+
+* LLM pricing depends on token count.
+* Context windows are measured in tokens.
+* Prompt optimization requires token awareness.
+
+⸻
+
+9. Vector Embeddings
+
+After tokenization, token IDs are converted into dense numerical vectors called embeddings.
+
+Definition:
+
+Vector embeddings are numerical representations that capture the semantic meaning of tokens.
+
+Embeddings help models understand relationships between words.
+
+Example:
+
+Words with similar meanings are placed close together in embedding space.
+
+Examples:
+
+* Dog ↔ Cat
+* Paris ↔ Eiffel Tower
+* India ↔ India Gate
+* Narendra Modi ↔ Emmanuel Macron
+
+Related concepts are located near each other.
+
+⸻
+
+10. Embedding Space
+
+Embedding vectors exist in a high-dimensional mathematical space.
+
+For visualization, we often show them in 2D or 3D.
+
+In reality:
+
+* Embedding dimensions typically range from hundreds to thousands.
+* Similar concepts cluster together.
+* Dissimilar concepts are far apart.
+
+Example:
+
+Dog ───── Cat
+Paris ─── Eiffel Tower
+India ─── India Gate
+
+⸻
+
+11. Limitation of Embeddings
+
+Embeddings alone cannot fully capture word order.
+
+Example:
+
+Dog ate cat
+Cat ate dog
+
+Both sentences contain the same words.
+
+Without position information, the model may treat them similarly.
+
+However, their meanings are completely different.
+
+This problem is solved using positional encoding.
+
+⸻
+
+12. Positional Encoding
+
+Positional encoding adds information about the position of each token in a sequence.
+
+Process:
+
+Text
+  ↓
+Tokenization
+  ↓
+Token IDs
+  ↓
+Vector Embeddings
+  ↓
+Positional Encoding
+  ↓
+Transformer
+
+Example:
+
+Dog   ate   cat
+ 0      1     2
+
+Each token embedding is combined with its position information.
+
+This enables the Transformer to understand:
+
+* Word order
+* Sentence structure
+* Context
+* Relationships between tokens
+
+⸻
+
+13. Complete LLM Pipeline
+
+User Input
+    ↓
+Tokenization
+    ↓
+Token IDs
+    ↓
+Vector Embeddings
+    ↓
+Positional Encoding
+    ↓
+Transformer
+    ↓
+Next Token Prediction
+    ↓
+Generated Response
+
+⸻
+
+Key Takeaways
+
+* LLMs learn patterns from massive text datasets.
+* GPT stands for Generative Pre-trained Transformer.
+* Transformers were introduced in 2017 through the paper Attention Is All You Need.
+* GPT generates text by predicting the next token.
+* Tokens are numerical representations of text.
+* Tokenization converts text into token IDs.
+* Embeddings capture semantic meaning.
+* Similar concepts are close in embedding space.
+* Positional encoding helps models understand sequence order.
+* The Transformer combines all these components to generate human-like responses.

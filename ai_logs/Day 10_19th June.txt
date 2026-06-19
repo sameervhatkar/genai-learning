@@ -1,0 +1,486 @@
+Day 10 Notes – Working with OpenAI API, Gemini API, Environment Variables, and System Prompts
+
+Date: 19 June
+
+⸻
+
+1. Introduction
+
+Today’s session focused on setting up and using Large Language Models programmatically using Python.
+
+We learned:
+
+* How to create and use OpenAI API keys
+* Why APIs are paid services
+* How to securely store API keys using .env files
+* How to create and use virtual environments
+* How to freeze project dependencies using requirements.txt
+* How to use Gemini APIs
+* How Gemini supports the OpenAI-compatible API format
+* How to use system prompts to define AI behavior
+
+⸻
+
+2. OpenAI API Account Setup
+
+There is a difference between:
+
+1. ChatGPT account
+2. OpenAI API account
+
+Having a ChatGPT subscription does not automatically provide API access.
+
+To use OpenAI APIs:
+
+1. Create an account on the OpenAI developer platform.
+2. Add billing information.
+3. Deposit credits (for example, $5).
+
+The API works on a pay-as-you-go model.
+
+Every request consumes tokens, and charges are based on:
+
+* Input tokens
+* Output tokens
+* Selected model
+
+⸻
+
+3. Creating an API Key
+
+Steps:
+
+1. Open the developer dashboard.
+2. Navigate to the API Keys section.
+3. Click Create API Key.
+4. Copy the generated key immediately.
+5. Store it securely.
+
+Example:
+
+sk-proj-xxxxxxxxxxxxxxxxxxxxxxxx
+
+Important: Never hardcode API keys directly into source code.
+
+⸻
+
+4. Why API Keys Should Not Be Hardcoded
+
+Bad practice:
+
+client = OpenAI(api_key="sk-proj-xxxxxxxx")
+
+Problems:
+
+* API keys may be leaked to GitHub.
+* Anyone with the key can use your credits.
+* Rotating keys becomes difficult.
+* It violates security best practices.
+
+Instead, use environment variables.
+
+⸻
+
+5. Environment Variables and .env Files
+
+A .env file stores sensitive information outside the source code.
+
+Example:
+
+OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxxxxx
+
+Benefits:
+
+* Improves security
+* Keeps secrets separate from code
+* Makes projects easier to share
+* Allows different environments to use different keys
+
+Example:
+
+project/
+│
+├── .env
+├── main.py
+├── requirements.txt
+└── .venv/
+
+Never upload the .env file to GitHub.
+
+Add it to .gitignore.
+
+Example:
+
+.env
+.venv/
+
+⸻
+
+6. Loading Environment Variables in Python
+
+To load variables from the .env file, we use the python-dotenv package.
+
+Install:
+
+pip install python-dotenv
+
+Import:
+
+from dotenv import load_dotenv
+
+Load variables:
+
+load_dotenv()
+
+Create client:
+
+from openai import OpenAI
+client = OpenAI()
+
+The SDK automatically reads:
+
+OPENAI_API_KEY
+
+from the environment.
+
+⸻
+
+7. Understanding the OpenAI Code
+
+Example:
+
+from dotenv import load_dotenv
+from openai import OpenAI
+load_dotenv()
+client = OpenAI()
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {
+            "role": "user",
+            "content": "My name is Sameer"
+        }
+    ]
+)
+print(response.choices[0].message.content)
+
+Let’s understand each component.
+
+⸻
+
+OpenAI()
+
+Creates a client object that communicates with OpenAI servers.
+
+client = OpenAI()
+
+The client handles:
+
+* Authentication
+* Sending requests
+* Receiving responses
+* Error handling
+
+⸻
+
+chat.completions.create()
+
+Sends a request to the chat completion endpoint.
+
+client.chat.completions.create()
+
+Breakdown:
+
+* client → OpenAI client object
+* chat → Chat-related APIs
+* completions → Generates text responses
+* create() → Sends the request
+
+⸻
+
+model
+
+Specifies which LLM to use.
+
+Example:
+
+model="gpt-4o-mini"
+
+Different models have different:
+
+* Pricing
+* Speed
+* Intelligence
+* Context window size
+
+⸻
+
+messages
+
+Conversation history sent to the model.
+
+Example:
+
+messages=[
+    {
+        "role": "user",
+        "content": "My name is Sameer"
+    }
+]
+
+Each message contains:
+
+* role
+* content
+
+⸻
+
+8. Understanding Roles
+
+There are three important roles.
+
+System Role
+
+Defines the behavior and personality of the AI.
+
+Example:
+
+{
+    "role": "system",
+    "content": "You are an expert Python and Java tutor."
+}
+
+Examples:
+
+* Define expertise
+* Set rules
+* Control tone
+* Add restrictions
+
+⸻
+
+User Role
+
+Represents the user’s input.
+
+Example:
+
+{
+    "role": "user",
+    "content": "Explain Java."
+}
+
+⸻
+
+Assistant Role
+
+Stores previous AI responses.
+
+Example:
+
+{
+    "role": "assistant",
+    "content": "Java is an object-oriented programming language."
+}
+
+This helps maintain conversation context.
+
+⸻
+
+9. Why System Prompts Matter
+
+Without a system prompt:
+
+* The model behaves generally.
+
+With a system prompt:
+
+* The model follows instructions consistently.
+
+Example:
+
+messages=[
+    {
+        "role": "system",
+        "content": "You are an AI assistant specializing only in Python and Java."
+    },
+    {
+        "role": "user",
+        "content": "Explain Java."
+    }
+]
+
+The system prompt acts like a set of rules or background instructions for the AI.
+
+System prompts are one of the most important concepts in prompt engineering.
+
+⸻
+
+10. Virtual Environments
+
+A virtual environment creates an isolated Python environment for each project.
+
+Benefits:
+
+* Prevents dependency conflicts
+* Allows different projects to use different package versions
+* Makes projects portable
+
+Create:
+
+python3 -m venv .venv
+
+Activate (macOS/Linux):
+
+source .venv/bin/activate
+
+Deactivate:
+
+deactivate
+
+⸻
+
+11. Freezing Dependencies
+
+After installing packages, generate a dependency list.
+
+Command:
+
+pip freeze > requirements.txt
+
+Example:
+
+openai==2.43.0
+python-dotenv==1.1.1
+httpx==0.28.1
+pydantic==2.13.4
+
+Why use it?
+
+* Recreates the exact environment
+* Makes collaboration easier
+* Ensures consistent package versions
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+⸻
+
+12. Working with Gemini API
+
+Google provides API access for Gemini models.
+
+The instructor mentioned that Gemini APIs are currently available with a free usage tier.
+
+Note: Pricing and free quotas can change in the future.
+
+⸻
+
+13. Using Gemini Native SDK
+
+Install:
+
+pip install google-genai
+
+Example:
+
+from google import genai
+client = genai.Client(api_key="YOUR_GEMINI_KEY")
+response = client.models.generate_content(
+    model="gemini-3.5-flash",
+    contents="Explain how AI works in a few words"
+)
+print(response.text)
+
+⸻
+
+14. OpenAI Compatibility with Gemini
+
+Google provides an OpenAI-compatible endpoint.
+
+This means developers can continue using the OpenAI SDK while sending requests to Gemini.
+
+Instead of changing the entire codebase, only two things change:
+
+1. API key
+2. Base URL
+
+Example:
+
+from openai import OpenAI
+client = OpenAI(
+    api_key="YOUR_GEMINI_KEY",
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
+
+Request:
+
+response = client.chat.completions.create(
+    model="gemini-3.5-flash",
+    messages=[
+        {
+            "role": "user",
+            "content": "Explain how AI works."
+        }
+    ]
+)
+
+Output:
+
+print(response.choices[0].message.content)
+
+This approach is called:
+
+OpenAI API Compatibility Layer
+
+In simple words:
+
+OpenAI SDK + Gemini API Key + Gemini Base URL = Gemini Response
+
+Benefits:
+
+* Minimal code changes
+* Easier migration
+* Faster experimentation
+* Reduced learning curve
+
+⸻
+
+15. Important Security Practices
+
+Always follow these rules:
+
+✅ Store API keys inside .env
+
+✅ Add .env to .gitignore
+
+✅ Use virtual environments
+
+✅ Freeze dependencies
+
+✅ Rotate compromised API keys
+
+❌ Never upload API keys to GitHub
+
+❌ Never hardcode secrets in source code
+
+❌ Never share screenshots containing API keys
+
+⸻
+
+16. Key Takeaways
+
+* OpenAI API access is separate from ChatGPT subscriptions.
+* API usage is token-based and paid.
+* API keys authenticate requests.
+* Use .env files to store secrets securely.
+* python-dotenv loads environment variables.
+* The OpenAI client handles communication with the API.
+* chat.completions.create() generates responses.
+* System prompts define AI behavior.
+* Virtual environments isolate dependencies.
+* pip freeze generates reproducible environments.
+* Gemini offers a native SDK.
+* Gemini also supports OpenAI-compatible APIs.
+* Changing the API key and base URL allows OpenAI code to work with Gemini.
