@@ -1,0 +1,260 @@
+Day 11 — 20th June 2026
+
+Topic: Prompt Engineering Fundamentals — Zero-Shot, Few-Shot, and Chain-of-Thought (CoT) Prompting
+
+Today I learned the three fundamental prompting techniques used with Large Language Models (LLMs):
+
+1. Zero-Shot Prompting
+2. Few-Shot Prompting
+3. Chain-of-Thought (CoT) Prompting
+
+These techniques help improve the quality, accuracy, and reasoning capability of AI models.
+
+⸻
+
+1. Zero-Shot Prompting
+
+Definition
+
+Zero-shot prompting means giving the model only the instruction without providing any examples.
+
+The model relies entirely on its pre-trained knowledge to generate the response.
+
+Flow
+
+Instruction → Model → Response
+
+Example
+
+SYSTEM_PROMPT = """
+You are an AI assistant specializing in Python and Java programming.
+If someone asks anything outside these topics, politely refuse.
+"""
+
+User message:
+
+Can you translate the word hello in Hindi?
+
+Since translation is outside the defined scope, the model should refuse.
+
+Characteristics
+
+* Simplest prompting technique
+* No examples are provided
+* Fast and easy to implement
+* Works well for straightforward tasks
+* Less reliable for complex or ambiguous problems
+
+Use Cases
+
+* Basic Q&A
+* Text summarization
+* Translation
+* Simple code generation
+* Classification tasks
+
+⸻
+
+2. Few-Shot Prompting
+
+Definition
+
+Few-shot prompting means providing the model with a few examples before asking the actual question.
+
+The examples teach the model the desired behavior, response format, and constraints.
+
+Flow
+
+Instruction + Examples → Model → Response
+
+Example
+
+SYSTEM_PROMPT = """
+You are an AI assistant specializing in Python and Java programming.
+Examples:
+Q: Can you explain (a + b)^2?
+A: Sorry, I can only help with coding-related questions.
+Q: Write Python code to add two numbers.
+A:
+def add(a, b):
+    return a + b
+"""
+
+User message:
+
+Can you translate the word hello in Hindi?
+
+The model learns from previous examples that translation questions should be rejected.
+
+Why Few-Shot Prompting Works Better
+
+Examples help the model understand:
+
+* Expected behavior
+* Response style
+* Output format
+* Domain restrictions
+* Edge cases
+
+Characteristics
+
+* Improves accuracy
+* Reduces ambiguity
+* Produces more consistent responses
+* Useful when formatting matters
+
+Use Cases
+
+* Structured outputs
+* Code generation
+* Domain-specific assistants
+* Data extraction
+* Classification problems
+
+⸻
+
+3. Chain-of-Thought (CoT) Prompting
+
+Definition
+
+Chain-of-Thought prompting encourages the model to reason through a problem step by step before generating the final answer.
+
+Instead of directly producing the result, the model breaks the problem into smaller intermediate steps.
+
+Flow
+
+Question → Reasoning → Final Answer
+
+Important Clarification
+
+Chain-of-thought does not mean exposing the model’s hidden internal reasoning.
+
+Instead, it means guiding the model to produce a structured explanation.
+
+Modern models may think internally without revealing all reasoning steps.
+
+A safer instruction is:
+
+Analyze the problem carefully before answering.
+Provide a concise explanation and step-by-step summary.
+Do not reveal internal reasoning.
+
+Example Prompt
+
+SYSTEM_PROMPT = """
+You are an AI assistant specializing in Python and Java programming.
+Rules:
+1. Answer only Python or Java questions.
+2. Analyze the problem carefully before answering.
+3. Provide:
+   - A concise explanation
+   - Step-by-step solution summary
+   - Code example when needed
+"""
+
+User message:
+
+Write a Python function to check whether a number is prime.
+
+Expected output format:
+
+Explanation:
+A prime number is divisible only by 1 and itself.
+Steps:
+1. Handle numbers less than 2.
+2. Check divisibility up to the square root.
+3. Return the result.
+Code:
+...
+
+Characteristics
+
+* Improves reasoning quality
+* Useful for multi-step problems
+* Reduces logical errors
+* Produces more explainable answers
+
+Use Cases
+
+* Mathematics
+* Algorithms
+* Debugging
+* System design
+* Complex coding tasks
+
+⸻
+
+Prompting Comparison Table
+
+Technique	Examples Provided	Reasoning Steps	Complexity
+Zero-Shot	 ❌ No	  ❌ No	     Low
+Few-Shot	 ✅ Yes	  ❌ No	     Medium
+CoT	        Optional  ✅ Yes	      High
+
+⸻
+
+Prompting Progression
+
+Zero-Shot
+    ↓
+Few-Shot
+    ↓
+Chain-of-Thought
+    ↓
+Prompt Chaining
+    ↓
+ReAct
+    ↓
+Tool Calling
+    ↓
+Agentic AI
+
+⸻
+
+Additional Learning
+
+Today I also understood that:
+
+* System prompts define the model’s behavior.
+* User prompts contain the actual request.
+* Better prompts lead to better outputs.
+* Examples improve response consistency.
+* Reasoning improves solution quality.
+* Prompt engineering is a critical skill in Agentic AI.
+
+⸻
+
+Important Security Reminder
+
+Never hardcode API keys inside source code.
+
+❌ Avoid:
+
+api_key = "your_api_key"
+
+✅ Use environment variables:
+
+GEMINI_API_KEY=your_key_here
+
+Load them using:
+
+from dotenv import load_dotenv
+import os
+load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
+
+Also add the following to .gitignore:
+
+.env
+.venv/
+__pycache__/
+
+This prevents accidental exposure of secrets on GitHub.
+
+⸻
+
+Key Takeaway
+
+Zero-Shot → Tell the model what to do.
+Few-Shot → Show the model examples.
+Chain-of-Thought → Guide the model to solve problems step by step.
