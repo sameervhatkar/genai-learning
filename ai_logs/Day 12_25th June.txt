@@ -1,0 +1,375 @@
+
+Day 12 – 25th June
+
+Topic: Automating Chain of Thought (CoT) using Message History
+
+Today I learned how to automate the Chain of Thought (CoT) prompting process. In the previous lecture, we manually provided every reasoning step to the model. Today, we converted that manual process into an automated conversation where the model itself generates one reasoning step at a time.
+
+Note: This is not the model’s real internal reasoning (hidden Chain of Thought). It is a simulated reasoning process created by repeatedly prompting the model to produce one reasoning step at a time.
+
+⸻
+
+1. Manual Chain of Thought (First Program)
+
+Initially, the Chain of Thought process was performed manually.
+
+The conversation history looked like this:
+
+System Prompt
+        ↓
+User Query
+        ↓
+Assistant (START)
+        ↓
+Assistant (PLAN)
+        ↓
+Assistant (PLAN)
+        ↓
+Assistant (OUTPUT)
+
+Each reasoning step was manually written inside the messages list.
+
+Example:
+
+messages = [
+    {"role": "system", ...},
+    {"role": "user", ...},
+    {"role": "assistant", "content": START},
+    {"role": "assistant", "content": PLAN},
+    {"role": "assistant", "content": PLAN},
+    {"role": "assistant", "content": OUTPUT}
+]
+
+The model simply continued the conversation because all previous reasoning steps were already present.
+
+⸻
+
+2. Problem with the Manual Approach
+
+Although the manual approach works, it has several disadvantages.
+
+* Every START, PLAN and OUTPUT message must be written manually.
+* The reasoning cannot change based on the user’s question.
+* It is impossible to scale for real-world applications.
+* Every new query requires manually creating all reasoning steps again.
+
+Therefore, a dynamic solution is needed.
+
+⸻
+
+3. Automating the Process
+
+Instead of manually writing the reasoning, we allow the model to generate each step.
+
+To achieve this, we maintain a list called message_history.
+
+Initially it contains only:
+
+message_history = [
+    {
+        "role": "system",
+        "content": SYSTEM_PROMPT
+    }
+]
+
+⸻
+
+4. Accepting User Input
+
+The program now accepts the user’s query dynamically.
+
+user_query = input("👉 ")
+
+Then the user’s message is appended to the conversation.
+
+message_history.append(
+    {
+        "role":"user",
+        "content":user_query
+    }
+)
+
+Now the conversation contains:
+
+System Prompt
+        ↓
+User Query
+
+⸻
+
+5. Why do we use a While Loop?
+
+The biggest improvement today was introducing an infinite loop.
+
+while True:
+
+Instead of asking the model only once, the program repeatedly asks the model until the final answer is generated.
+
+The loop stops only after receiving the OUTPUT step.
+
+⸻
+
+6. Sending the Entire Conversation Every Time
+
+Every API call sends the complete conversation history.
+
+messages = message_history
+
+This is extremely important.
+
+Large Language Models (LLMs) are stateless.
+
+This means:
+
+They do not remember previous API calls.
+
+Therefore, every request must contain the entire conversation.
+
+Example after several iterations:
+
+System
+User
+START
+PLAN
+PLAN
+PLAN
+
+This complete history is sent during every API request.
+
+⸻
+
+7. Receiving the Response
+
+The response is received as a JSON string.
+
+raw_result = response.choices[0].message.content
+
+Example:
+
+{
+    "step":"PLAN",
+    "content":"Apply BODMAS rule."
+}
+
+⸻
+
+8. Saving the Model’s Response
+
+The generated response is immediately stored back into the conversation.
+
+message_history.append(
+    {
+        "role":"assistant",
+        "content":raw_result
+    }
+)
+
+This is the most important part of today’s lecture.
+
+Every new response becomes part of the next API call.
+
+The conversation keeps growing automatically.
+
+Example:
+
+System
+User
+START
+PLAN
+PLAN
+PLAN
+
+↓
+
+Next API Call
+
+↓
+
+System
+User
+START
+PLAN
+PLAN
+PLAN
+OUTPUT
+
+⸻
+
+9. Parsing JSON
+
+Since the model returns JSON, we convert it into a Python dictionary.
+
+parsed_result = json.loads(raw_result)
+
+Now we can access values like:
+
+parsed_result["step"]
+
+and
+
+parsed_result["content"]
+
+⸻
+
+10. Processing Different Steps
+
+The program checks which step has been returned.
+
+START
+
+if parsed_result.get("step") == "START":
+
+Prints:
+
+🔥 START
+
+⸻
+
+PLAN
+
+if parsed_result.get("step") == "PLAN":
+
+Prints:
+
+🧠 PLAN
+
+⸻
+
+OUTPUT
+
+if parsed_result.get("step") == "OUTPUT":
+
+Prints:
+
+🤖 OUTPUT
+
+Then
+
+break
+
+terminates the loop.
+
+⸻
+
+11. How the Conversation Grows
+
+Iteration 1
+
+System
+User
+
+↓
+
+Model
+
+START
+
+Stored.
+
+⸻
+
+Iteration 2
+
+System
+User
+START
+
+↓
+
+Model
+
+PLAN
+
+Stored.
+
+⸻
+
+Iteration 3
+
+System
+User
+START
+PLAN
+
+↓
+
+Model
+
+PLAN
+
+Stored.
+
+⸻
+
+Iteration 4
+
+System
+User
+START
+PLAN
+PLAN
+
+↓
+
+Model
+
+OUTPUT
+
+Loop stops.
+
+⸻
+
+12. Difference Between the First and Second Program
+
+First Program	                                Second Program
+START, PLAN and OUTPUT were manually written.	START, PLAN and OUTPUT are generated dynamically by the model.
+Fixed reasoning.	                            Dynamic reasoning.
+Single API call.	                            Multiple API calls inside a loop.
+No conversation history.	                    Maintains conversation history.
+No automation.	                                Fully automated reasoning simulation.
+
+⸻
+
+13. Important Concept Learned
+
+Large Language Models do not remember previous API calls.
+
+To maintain context, we must send the complete conversation every time.
+
+This is why message_history keeps growing after every iteration.
+
+Without this history, the model would behave as if every request were completely new.
+
+⸻
+
+14. Difference Between Simulated CoT and Real Chain of Thought
+
+The reasoning generated in today’s code is not the model’s hidden internal reasoning.
+
+Instead, the program explicitly instructs the model to produce reasoning as JSON using the steps:
+
+* START
+* PLAN
+* OUTPUT
+
+The application then feeds each generated step back into the next API call.
+
+This creates the appearance of step-by-step reasoning, but it is actually a prompt-engineering technique rather than access to the model’s internal thought process.
+
+⸻
+
+Key Takeaways
+
+* Understood the limitation of manually writing reasoning steps.
+* Learned how to automate Chain of Thought using a while loop.
+* Learned to maintain conversation state using message_history.
+* Understood why LLMs require the full conversation in every API request.
+* Learned how to append assistant responses back into the conversation.
+* Learned to parse JSON responses using json.loads().
+* Used START, PLAN, and OUTPUT to simulate step-by-step reasoning.
+* Understood the difference between manual CoT and automated CoT.
+* Learned that this is a simulated reasoning process and not the model’s actual hidden Chain of Thought.
+
+⸻
+
+I think this is one of the most important days so far because today you moved from static prompting to building an agent-like conversation loop, which is the foundation of how many AI agents and chat applications maintain context and reason across multiple interactions.

@@ -189,7 +189,7 @@ Prompting Comparison Table
 Technique	Examples Provided	Reasoning Steps	Complexity
 Zero-Shot	 ❌ No	  ❌ No	     Low
 Few-Shot	 ✅ Yes	  ❌ No	     Medium
-CoT	        Optional  ✅ Yes	      High
+CoT	        Optional  ✅ Yes	        High
 
 ⸻
 
