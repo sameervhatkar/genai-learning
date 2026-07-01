@@ -1,0 +1,205 @@
+Day 16 – 1st July
+
+Topic: Building an AI Backend using FastAPI and Ollama
+
+Today I learned the basics of FastAPI and how to connect it with a locally running Large Language Model (LLM) using the Ollama Python library. Instead of interacting with the model through Open WebUI, I learned how to build my own REST API that can receive user requests and return AI-generated responses.
+
+⸻
+
+1. What is FastAPI?
+
+FastAPI is a modern Python framework used to build REST APIs quickly and efficiently.
+
+Instead of writing networking code manually, FastAPI allows us to expose Python functions as API endpoints using decorators.
+
+Example:
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+When someone visits:
+
+http://localhost:8000/
+
+FastAPI executes the function and returns the JSON response.
+
+⸻
+
+2. Creating a FastAPI Application
+
+The first step was creating the FastAPI application.
+
+app = FastAPI()
+
+This object represents the entire web application.
+
+Every API endpoint that we create belongs to this application.
+
+⸻
+
+3. Understanding API Endpoints
+
+FastAPI allows us to expose different URLs using decorators.
+
+Example:
+
+@app.get("/")
+
+This creates the root endpoint.
+
+Another example:
+
+@app.get("/contact-us")
+
+This creates another endpoint.
+
+Whenever a client accesses these URLs, FastAPI automatically calls the corresponding Python function.
+
+⸻
+
+4. GET vs POST Requests
+
+Today I learned the difference between GET and POST requests.
+
+GET Request
+
+Used for retrieving information.
+
+Example:
+
+@app.get("/")
+
+A GET request usually does not send data to the server.
+
+⸻
+
+POST Request
+
+Used when the client wants to send data to the server.
+
+Example:
+
+@app.post("/chat")
+
+The user’s prompt is sent to the server, processed by the AI model, and then the generated response is returned.
+
+⸻
+
+5. Receiving Data using Body()
+
+Inside the POST endpoint, we received the user’s message using:
+
+message: str = Body(..., description="The message")
+
+Body() tells FastAPI that this value should be extracted from the HTTP request body.
+
+The description parameter provides documentation for the API.
+
+⸻
+
+6. Connecting FastAPI with Ollama
+
+We created an Ollama client.
+
+client = Client(
+    host="http://localhost:11434"
+)
+
+This establishes a connection between our Python application and the Ollama server.
+
+Port 11434 is the default port where Ollama listens for incoming requests.
+
+⸻
+
+7. Sending Prompts to the Local LLM
+
+We used the chat() function to communicate with the model.
+
+response = client.chat(
+    model="gemma:2b",
+    messages=[
+        {
+            "role": "user",
+            "content": message
+        }
+    ]
+)
+
+The request contains:
+
+* The model name
+* The conversation messages
+* The user’s prompt
+
+Ollama forwards this request to the selected local model, which generates the response.
+
+⸻
+
+8. Returning the AI Response
+
+Instead of returning the complete response object, we extracted only the generated text.
+
+return {
+    "response": response.message.content
+}
+
+This makes the API response clean and easy to use for frontend applications.
+
+⸻
+
+9. Complete Request Flow
+
+Today’s project follows this architecture:
+
+Client
+   │
+HTTP Request
+   │
+   ▼
+FastAPI
+   │
+   ▼
+Ollama Python Client
+   │
+   ▼
+Ollama Server
+   │
+   ▼
+Gemma 2B Model
+   │
+   ▼
+Generated Response
+   │ 
+   ▼
+FastAPI
+   │
+   ▼
+Client
+
+This helped me understand how an AI backend processes requests step by step.
+
+⸻
+
+10. Important Observations
+
+Today I understood that:
+
+* FastAPI converts Python functions into REST APIs.
+* Decorators define different API endpoints.
+* GET requests retrieve data, while POST requests send data to the server.
+* Body() is used to receive data from the request body.
+* The Ollama client acts as a bridge between FastAPI and the local LLM.
+* The overall architecture is very similar to the OpenAI Chat Completion API that I learned earlier, but now the model runs locally instead of on cloud servers.
+
+⸻
+
+Key Takeaways
+
+* Learned the basics of FastAPI.
+* Created GET and POST API endpoints.
+* Understood the difference between GET and POST requests.
+* Learned how to receive user input using Body().
+* Connected FastAPI with Ollama using the Ollama Python client.
+* Sent prompts to the local Gemma model and received AI-generated responses.
+* Understood the complete architecture of a local AI backend using FastAPI and Ollama.

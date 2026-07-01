@@ -1,0 +1,318 @@
+Day 13 – 26th June
+
+Topic: Persona-Based Prompting and Prompt Formats
+
+Today I learned about Persona-Based Prompting and different prompt formats used by Large Language Models (LLMs). These concepts help control how the model behaves and how instructions are structured.
+
+⸻
+
+1. What is Persona-Based Prompting?
+
+Persona-Based Prompting is a prompting technique where we assign the AI a specific identity, personality, profession, or role.
+
+Instead of simply asking a question, we first tell the model who it should behave as.
+
+This makes the responses more consistent and aligned with the desired personality.
+
+Example:
+
+Instead of asking:
+
+Explain Binary Search.
+
+We can say:
+
+You are Sameer Vhatkar, a Computer Science educator who loves teaching beginners.
+Explain Binary Search.
+
+Now the model answers according to Sameer’s teaching style rather than as a generic AI assistant.
+
+⸻
+
+2. Purpose of Persona-Based Prompting
+
+The main objective is not to copy a person’s knowledge, but to imitate their:
+
+* Communication style
+* Teaching style
+* Personality
+* Tone of speaking
+* Problem-solving approach
+* Behaviour while answering questions
+
+In simple words:
+
+Persona-Based Prompting tries to make the AI behave like a specific person.
+
+⸻
+
+3. Building a Persona
+
+A good persona contains multiple pieces of information.
+
+Example:
+
+Who is the AI?
+Sameer Vhatkar
+Profession?
+Computer Science Educator
+Experience?
+Java, Spring Boot, DSA
+Current Interests?
+Agentic AI
+Prompt Engineering
+Python
+Generative AI
+Teaching Style?
+Explain "Why" before "How"
+Communication Style?
+Friendly
+Beginner Friendly
+Uses Real-Life Analogies
+
+The richer the persona, the more consistently the model behaves.
+
+⸻
+
+4. Few-Shot Examples inside Persona Prompt
+
+Today’s persona prompt also included multiple examples.
+
+Example:
+
+User:
+Can you explain Binary Search?
+Assistant:
+Let's first understand the problem...
+
+These examples teach the model:
+
+* How to answer
+* What tone to use
+* How much detail to provide
+* Teaching philosophy
+
+This combines:
+
+* Persona Prompting
+* Few-Shot Prompting
+
+⸻
+
+5. Teaching Philosophy
+
+The persona used today follows these principles:
+
+* Explain concepts before syntax.
+* Explain “Why” before “How”.
+* Use simple language.
+* Avoid unnecessary jargon.
+* Encourage understanding instead of memorization.
+* Use real-life analogies.
+* Guide students instead of directly giving answers.
+
+This makes the AI behave like a real instructor rather than a search engine.
+
+⸻
+
+6. Persona Prompt Example
+
+High-level structure:
+
+System Prompt
+↓
+Who am I?
+↓
+Background
+↓
+Skills
+↓
+Teaching Philosophy
+↓
+Examples
+↓
+User Question
+↓
+AI Response
+
+⸻
+
+7. Prompt Formats
+
+The instructor also introduced different prompt formats used by LLMs.
+
+Although they achieve similar goals, they organize prompts differently.
+
+The three formats learned today were:
+
+* Alpaca Prompt Format
+* ChatML Prompt Format
+* Instruction Prompt Format
+
+⸻
+
+8. Alpaca Prompt Format
+
+The Alpaca prompt format became popular through Stanford’s Alpaca instruction-tuned model.
+
+It follows a structured template.
+
+Example:
+
+### Instruction:
+Explain Binary Search.
+### Input:
+The student knows arrays.
+### Response:
+
+Structure:
+
+Instruction
+↓
+Input
+↓
+Response
+
+Characteristics:
+
+* Designed for instruction-tuned models.
+* Clear separation between instruction and input.
+* Mostly used with open-source LLMs.
+
+⸻
+
+9. ChatML Prompt Format
+
+ChatML is the format used by modern chat-based APIs like OpenAI’s Chat Completions API.
+
+Instead of one large prompt, the conversation is divided into roles.
+
+Example:
+
+messages=[
+    {
+        "role":"system",
+        "content":"You are an expert DSA instructor."
+    },
+    {
+        "role":"user",
+        "content":"Explain Binary Search."
+    }
+]
+
+Structure:
+
+System
+↓
+User
+↓
+Assistant
+
+Roles:
+
+System
+
+Defines:
+
+* AI personality
+* Behaviour
+* Rules
+* Constraints
+
+User
+
+Contains the user’s request.
+
+Assistant
+
+Contains previous AI responses.
+
+Advantages:
+
+* Supports conversations.
+* Maintains chat history.
+* Easy to build chatbots.
+* Standard format for modern LLM APIs.
+
+This is the format used throughout most of the course so far.
+
+⸻
+
+10. Instruction Prompting
+
+Instruction Prompting is the simplest prompting style.
+
+Everything is written as one plain instruction.
+
+Example:
+
+You are an expert DSA instructor.
+Explain Binary Search.
+Requirements:
+- Use simple language.
+- Give one analogy.
+- Show Java code.
+
+Structure:
+
+Instruction
+↓
+Model
+↓
+Response
+
+Characteristics:
+
+* Simple
+* Easy to write
+* Common for single-turn tasks
+* Does not explicitly separate roles
+
+⸻
+
+11. Comparison of Prompt Formats
+
+Prompt Format	Structure	Primary Use
+Alpaca	Instruction → Input → Response	Instruction-tuned open-source models
+ChatML	System → User → Assistant	Modern chat APIs (OpenAI, Gemini compatibility, etc.)
+Instruction Prompting	Single instruction	Simple tasks and many instruction-based models
+
+⸻
+
+12. Which Prompt Format Should We Use?
+
+For modern AI applications:
+
+* ChatGPT
+* GPT-4o
+* GPT-4o-mini
+* Gemini (OpenAI-compatible endpoint)
+
+the preferred format is ChatML because it naturally supports conversations, multiple roles, and context.
+
+Alpaca and Instruction formats are still important because many open-source models are trained using them.
+
+⸻
+
+13. Important Observations
+
+Today I understood that:
+
+* Prompting is not only about asking good questions.
+* The structure of a prompt also affects the response.
+* Persona prompts control who the AI behaves as.
+* Examples help maintain consistency.
+* Different models may expect different prompt formats.
+* ChatML has become the standard for modern conversational AI systems.
+
+⸻
+
+Key Takeaways
+
+* Persona-Based Prompting makes the AI imitate a specific person’s behaviour and communication style.
+* A good persona includes background, expertise, communication style, and examples.
+* Persona prompting is often combined with Few-Shot Prompting.
+* Alpaca Prompt Format uses Instruction → Input → Response.
+* ChatML uses System → User → Assistant roles.
+* Instruction Prompting places everything into one plain instruction.
+* ChatML is the most commonly used format for current chat-based LLM APIs.

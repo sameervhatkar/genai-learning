@@ -1,0 +1,141 @@
+Day 15 – 30th June
+
+Topic: Understanding Local LLM Workflow using Open WebUI
+
+After successfully installing Ollama, Docker, and Open WebUI, today’s session focused on understanding how these components work together. We experimented with local models by asking prompts through Open WebUI and observed how the responses were generated.
+
+⸻
+
+1. Understanding the Complete Workflow
+
+Today I understood the complete flow of a locally running AI application.
+
+Instead of sending requests to OpenAI or Gemini over the internet, the prompt remains inside the local machine.
+
+The overall workflow is:
+
+User
+   ↓
+Open WebUI
+   ↓
+Ollama
+   ↓
+Local LLM (Gemma, Llama, etc.)
+   ↓
+Generated Response
+
+This architecture allows us to use AI models completely offline after downloading them.
+
+⸻
+
+2. Open WebUI is Only the Frontend
+
+One important concept learned today was that Open WebUI itself is not the AI model.
+
+Its responsibility is simply to provide a graphical interface for interacting with the model.
+
+Its features include:
+
+* Chat interface
+* Conversation history
+* Model selection
+* Prompt experimentation
+* User-friendly interaction
+
+The actual reasoning and text generation are performed by the model running inside Ollama.
+
+⸻
+
+3. Understanding Ollama’s Responsibility
+
+Today’s experiments helped me understand that Ollama acts as the model manager.
+
+Its responsibilities include:
+
+* Downloading models
+* Managing installed models
+* Running the selected model
+* Receiving prompts
+* Generating responses
+* Returning the output to the application
+
+Open WebUI simply displays whatever Ollama returns.
+
+⸻
+
+4. Experimenting with Local Models
+
+We interacted with the local models by asking different prompts through Open WebUI.
+
+This helped me understand:
+
+* How quickly the model responds.
+* The quality of responses generated locally.
+* How prompting works even without cloud APIs.
+* The overall user experience of working with local LLMs.
+
+Although we didn’t write much Python code today, today’s session helped build the conceptual understanding of the complete local AI ecosystem.
+
+⸻
+
+5. Difference Between Cloud and Local AI
+
+Until now, I had mostly worked with cloud-based APIs.
+
+Cloud Architecture:
+
+Python Program
+      ↓
+Internet
+      ↓
+OpenAI / Gemini
+      ↓
+Generated Response
+
+Local Architecture:
+
+Python Program
+      ↓
+Ollama
+      ↓
+Local LLM
+      ↓
+Generated Response
+
+The local approach removes the dependency on cloud providers and internet connectivity after the model has been downloaded.
+
+⸻
+
+6. Why Learn Local LLMs?
+
+Running AI models locally is useful because:
+
+* No API charges.
+* Better data privacy.
+* Faster testing during development.
+* No dependency on external servers.
+* Useful for experimenting with open-source models.
+
+However, the quality and speed depend on the hardware available on the local machine.
+
+⸻
+
+7. Important Observations
+
+Today I understood that:
+
+* Open WebUI is only the frontend.
+* Ollama performs the actual model execution.
+* The LLM generates the response.
+* Local AI applications can work without cloud APIs.
+* Different open-source models can be downloaded and tested through Ollama.
+
+⸻
+
+Key Takeaways
+
+* Understood the complete workflow of a local AI application.
+* Learned the responsibilities of Open WebUI and Ollama.
+* Experimented with locally running language models.
+* Compared local AI architecture with cloud-based AI architecture.
+* Developed a better understanding of how local LLM ecosystems are organized.

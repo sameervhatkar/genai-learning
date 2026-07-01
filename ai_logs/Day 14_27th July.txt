@@ -1,0 +1,147 @@
+Day 14 – 27th June
+
+Topic: Setting Up a Local AI Environment (Ollama, Docker & Open WebUI)
+
+Today I learned how to set up a complete local AI environment. Until now, I had been using cloud-based models like OpenAI and Gemini through APIs. Today, I learned that it is also possible to run open-source Large Language Models (LLMs) directly on my own computer without sending requests to cloud providers.
+
+⸻
+
+1. What is Ollama?
+
+Ollama is software that allows us to download, manage, and run open-source Large Language Models (LLMs) locally on our computer.
+
+Instead of sending prompts to cloud providers like OpenAI or Gemini, Ollama executes the selected model directly on the local machine.
+
+Some popular models supported by Ollama include:
+
+* Gemma
+* Llama
+* Mistral
+* Phi
+* DeepSeek
+
+Once a model is downloaded, it can be used without an internet connection.
+
+⸻
+
+2. Advantages of Running Models Locally
+
+Running LLMs locally provides several benefits.
+
+* No API cost.
+* Better privacy since data never leaves the computer.
+* Works offline after downloading the model.
+* Full control over the model.
+* Faster experimentation without worrying about API limits.
+
+However, local models also require sufficient CPU, RAM, or GPU resources.
+
+⸻
+
+3. Why Docker?
+
+Our instructor recommended running the local AI environment using Docker.
+
+Docker is a containerization platform that packages an application along with all of its required dependencies inside an isolated container.
+
+Instead of installing every component directly on the operating system, Docker creates a clean environment that is easy to manage.
+
+Benefits include:
+
+* Isolated environment.
+* No dependency conflicts.
+* Easy installation.
+* Easy updates.
+* Same environment across different systems.
+
+⸻
+
+4. What is Open WebUI?
+
+Open WebUI is a browser-based interface that allows users to interact with locally running LLMs.
+
+Instead of using terminal commands, Open WebUI provides a ChatGPT-like interface where users can type prompts and receive responses.
+
+Open WebUI itself is not the AI model.
+
+It only provides the graphical interface.
+
+The actual model execution happens inside Ollama.
+
+⸻
+
+5. Relationship Between Docker, Open WebUI and Ollama
+
+Today’s installation helped me understand how these different components work together.
+
+Architecture:
+
+Browser
+    ↓
+Open WebUI
+    ↓
+Docker Container
+    ↓
+Ollama
+    ↓
+Local LLM
+
+Each component has a separate responsibility.
+
+* Open WebUI provides the interface.
+* Docker isolates the environment.
+* Ollama manages and runs the model.
+* The LLM generates the response.
+
+⸻
+
+6. Cloud Models vs Local Models
+
+Before today, all my AI applications used cloud APIs.
+
+Flow:
+
+Python Program
+      ↓
+Internet
+      ↓
+OpenAI / Gemini
+      ↓
+Response
+
+Today I learned another architecture.
+
+Python Program
+      ↓
+Ollama
+      ↓
+Local LLM
+      ↓
+Response
+
+The biggest difference is that the second architecture does not require sending prompts to cloud servers.
+
+⸻
+
+7. Important Observations
+
+Today I understood that:
+
+* Large Language Models can run locally.
+* Ollama is responsible for downloading and running the models.
+* Docker simplifies installation by creating isolated environments.
+* Open WebUI is only the frontend interface.
+* The AI model itself runs through Ollama.
+
+⸻
+
+Key Takeaways
+
+* Learned what Ollama is and why it is used.
+* Understood the advantages of local LLMs.
+* Learned the purpose of Docker.
+* Installed Docker, Ollama, and Open WebUI.
+* Understood the relationship between Docker, Open WebUI, and Ollama.
+* Learned the difference between cloud-based AI models and locally running AI models.
+
+⸻
